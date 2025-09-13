@@ -1,0 +1,20 @@
+<resources>
+    <string name="first_name">Ism</string>
+    <string name="last_name">Familya</string>
+    <string name="username">Username</string>
+    <string name="password">Parol</string>
+    <string name="signup">Ro‘yxatdan o‘tish</string>
+    <string name="already_have_account">Hisobingiz bormi? Kirish</string>
+
+
+    <!-- Login uchun qo‘shimchalar -->
+    <string name="login">Kirish</string>
+    <string name="dont_have_account">Hisobingiz yo‘qmi? Ro‘yxatdan o‘ting</string>
+
+
+    <!-- App name -->
+    <string name="app_name">UniversityApp</string>
+
+    <string name="hello_blank_fragment">Salom, bu yangi fragment!</string>
+
+</resources>
