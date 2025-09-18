@@ -7,4 +7,16 @@
     <!-- Tugma gradient ranglari -->
     <color name="purple_500">#9C27B0</color>   <!-- To‘q binafsha -->
     <color name="teal_200">#03DAC5</color>     <!-- Yashil-moviy (teal) -->
+
+
+    <!-- Asosiy rang (primary) -->
+    <color name="colorPrimary">#6200EE</color>
+
+    <!-- Agar kerak bo‘lsa boshqa ranglar ham -->
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="red">#FF0000</color>
+    <color name="teal_700">#018786</color>
 </resources>

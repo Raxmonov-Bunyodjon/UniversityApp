@@ -8,7 +8,7 @@ data class StudentEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val firstName: String,
     val lastName: String,
-    val facultyId: Int,   // Foreign key sifatida Faculty bilan bog‘lanadi
-    val direction: String? = null,
-    val avatar: String? = null
+    val facultyId: Int,
+    val direction: String,  // yangi maydon
+    val avatar: String      // yangi maydon
 )

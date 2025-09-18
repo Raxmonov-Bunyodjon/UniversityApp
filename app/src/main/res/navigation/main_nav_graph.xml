@@ -2,37 +2,51 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/loginFragment">
+    android:id="@+id/main_nav_graph">
 
-    <!-- 🔹 Login Fragment -->
+    <!-- Login Fragment -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.universityapp.ui.auth.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
+
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+
         <action
-            android:id="@+id/action_loginFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
-    <!-- 🔹 Signup Fragment -->
+    <!-- Signup Fragment -->
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.example.universityapp.ui.auth.SignupFragment"
         android:label="Signup"
         tools:layout="@layout/fragment_signup">
+
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 
-    <!-- 🔹 MainActivity (host sifatida) -->
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.universityapp.ui.main.MainActivity"
-        android:label="Main"
-        tools:layout="@layout/activity_main" />
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.universityapp.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <action
+        android:id="@+id/action_homeFragment_to_addFacultyFragment"
+        app:destination="@id/addFacultyFragment" />
+
+    <!-- AddFacultyFragment -->
+    <fragment
+        android:id="@+id/addFacultyFragment"
+        android:name="com.example.universityapp.ui.main.faculty.addfaculty.AddFacultyFragment"
+        android:label="Add Faculty"
+        tools:layout="@layout/fragment_add_faculty" />
 </navigation>

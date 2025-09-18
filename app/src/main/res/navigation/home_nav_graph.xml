@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/facultyFragment">
+
+    <!-- FacultyFragment -->
+    <fragment
+        android:id="@+id/facultyFragment"
+        android:name="com.example.universityapp.ui.main.faculty.FacultyFragment"
+        tools:layout="@layout/fragment_faculty"
+        android:label="Fakultetlar">
+
+    </fragment>
+
+    <!-- Student Fragment -->
+    <fragment
+        android:id="@+id/studentFragment"
+        android:name="com.example.universityapp.ui.main.student.StudentFragment"
+        tools:layout="@layout/fragment_student"
+        android:label="Talabalar" />
+
+    <!-- Profile Fragment -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.universityapp.ui.main.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:label="Profil" />
+</navigation>

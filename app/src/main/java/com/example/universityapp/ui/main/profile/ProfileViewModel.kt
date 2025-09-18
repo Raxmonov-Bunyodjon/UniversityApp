@@ -1,26 +1,26 @@
 package com.example.universityapp.ui.main.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.universityapp.domain.model.User
+import com.example.universityapp.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor() : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> get() = _user
-
-    init {
-        // Hozircha test uchun dummy data
-        _user.value = User(
-            id = 1,
-            firstName = "Ali",
-            lastName = "Valiyev",
-            username = "ali123",
-            password = "12345678"
-        )
-    }
+    // Flow<User?>: hozirgi login qilgan foydalanuvchi ma’lumotlari
+    val userFlow: StateFlow<User?> = userRepository.userUsernameFlow
+        .map { username ->
+            if (username.isNullOrEmpty()) null
+            else userRepository.getUserByUsername(username)
+        }
+        .stateIn(viewModelScope, SharingStarted.Lazily, null)
 }

@@ -1,32 +1,36 @@
 package com.example.universityapp.data.repository
 
+import com.example.universityapp.data.local.FacultyDao
+import com.example.universityapp.data.local.FacultyEntity
 import com.example.universityapp.domain.model.Faculty
 import com.example.universityapp.domain.repository.FacultyRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FacultyRepositoryImpl @Inject constructor(
-    // agar Room database yoki API ishlatsang, shu yerga DAO yoki service kiradi
+    private val facultyDao: FacultyDao
 ) : FacultyRepository {
 
-    private val fakeData = listOf(
-        Faculty(1, "Informatika"),
-        Faculty(2, "Matematika"),
-        Faculty(3, "Fizika")
-    )
-
-    override suspend fun getFaculties(): List<Faculty> {
-        return fakeData
+    override fun getFaculties(): Flow<List<Faculty>> {
+        return facultyDao.getAllFaculties().map { it.map { Faculty(it.id, it.name) } }
     }
 
-    override suspend fun getFacultyById(id: Int): Faculty? {
-        return fakeData.find { it.id == id }
+    override suspend fun getFacultyById(id: Long): Faculty? {
+        val entities = facultyDao.getAllFaculties().first()
+        return entities.find { it.id == id }?.let {  Faculty(it.id, it.name) }
     }
 
     override suspend fun insertFaculty(faculty: Faculty) {
-        // TODO: database ga qo‘shish
+        // id 0 bo‘lsa, Room avtomatik increment qiladi
+        facultyDao.insertFaculty(FacultyEntity(id = 0, name = faculty.name))
     }
 
-    override suspend fun deleteFaculty(faculty: Faculty) {
-        // TODO: database dan o‘chirish
+   override suspend fun deleteFaculty(id: Long ) {
+    // id bo‘yicha o‘chirish
+        facultyDao.deleteFaculty(id)
     }
 }

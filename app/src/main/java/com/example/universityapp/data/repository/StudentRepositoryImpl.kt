@@ -1,33 +1,58 @@
 package com.example.universityapp.data.repository
 
+import com.example.universityapp.data.local.StudentDao
+import com.example.universityapp.data.local.StudentEntity
 import com.example.universityapp.domain.model.Student
 import com.example.universityapp.domain.repository.StudentRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class StudentRepositoryImpl @Inject constructor(
-    // agar Room yoki API bo‘lsa keyin shu yerga ulaysan (StudentDao yoki api service)
+    private val studentDao: StudentDao
 ) : StudentRepository {
 
-    // Hozircha fake ma’lumot
-    private val fakeStudents = mutableListOf(
-        Student(1, "Ali", "Valiyev", 1),
-        Student(2, "Dilshod", "Karimov",2),
-        Student(3, "Malika", "Olimova", 3)
-    )
-
     override suspend fun getStudents(): List<Student> {
-        return fakeStudents
+        // Dao-dan barcha studentlarni olib, domain modelga map qilish
+        return studentDao.getAllStudentsList().map {
+            Student(
+                id = it.id,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                facultyId = it.facultyId,
+                direction = it.direction,
+                avatar = it.avatar
+            )
+        }
     }
 
     override suspend fun getStudentsByFaculty(facultyId: Int): List<Student> {
-        TODO("Not yet implemented")
+        return studentDao.getStudentsByFaculty(facultyId).map {
+            Student(
+                id = it.id,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                facultyId = it.facultyId,
+                direction = it.direction,
+                avatar = it.avatar
+            )
+        }
     }
 
     override suspend fun insertStudent(student: Student) {
-        fakeStudents.add(student)
+        studentDao.insertStudent(
+            StudentEntity(
+                id = student.id,
+                firstName = student.firstName,
+                lastName = student.lastName,
+                facultyId = student.facultyId,
+                direction = student.direction,
+                avatar = student.avatar
+            )
+        )
     }
 
     override suspend fun deleteStudent(student: Student) {
-        fakeStudents.remove(student)
+        studentDao.deleteStudent(student.id)
     }
 }

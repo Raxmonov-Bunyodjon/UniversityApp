@@ -1,10 +1,12 @@
+// DatabaseModule.kt
 package com.example.universityapp.di
 
 import android.content.Context
 import androidx.room.Room
 import com.example.universityapp.data.local.AppDatabase
-import com.example.universityapp.data.local.FacultyDao
+import com.example.universityapp.data.local.UserDao
 import com.example.universityapp.data.local.StudentDao
+import com.example.universityapp.data.local.FacultyDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,12 +25,17 @@ object DatabaseModule {
             context,
             AppDatabase::class.java,
             "university_db"
-        ).fallbackToDestructiveMigration().build()
+        )
+            .fallbackToDestructiveMigration() // eski DB ni o‘chirib yangisini yaratadi
+            .build()
     }
 
     @Provides
-    fun provideFacultyDao(database: AppDatabase): FacultyDao = database.facultyDao()
+    fun provideUserDao(db: AppDatabase): UserDao = db.userDao()
 
     @Provides
-    fun provideStudentDao(database: AppDatabase): StudentDao = database.studentDao()
+    fun provideStudentDao(db: AppDatabase): StudentDao = db.studentDao()
+
+    @Provides
+    fun provideFacultyDao(db: AppDatabase): FacultyDao = db.facultyDao()
 }
