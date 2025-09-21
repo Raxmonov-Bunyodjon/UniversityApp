@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 fragment_login.xml
+
+Bu layout fayl Login ekranini tashkil qiladi va foydalanuvchi kirishi (authentication) uchun ishlatiladi.
+Har bir UI elementi fragmentdagi ViewModel va funksiyalar bilan bog‘langan.
+
+Elementlar:
+1. Username → TextInputEditText ichida TextInputLayout
+2. Password → TextInputEditText ichida TextInputLayout (password toggle bilan)
+3. Login button → foydalanuvchi login tugmasi
+4. ProgressBar → login jarayonida ko‘rsatish uchun
+5. Signup link → foydalanuvchi ro‘yxatdan o‘tishi uchun TextView
+-->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#4DFFF2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <!-- Username -->
+    <!-- 🔹 Username input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUsername"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -25,7 +40,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Password -->
+    <!-- 🔹 Password input (password toggle) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -45,7 +60,7 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Login button -->
+    <!-- 🔹 Login button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
@@ -59,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- 🔹 Progress bar (login jarayonida ko‘rsatiladi) -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -66,8 +82,7 @@
         android:visibility="gone"
         tools:ignore="MissingConstraints" />
 
-
-    <!-- Signup link -->
+    <!-- 🔹 Signup link -->
     <TextView
         android:id="@+id/tvGoToSignup"
         android:layout_width="wrap_content"

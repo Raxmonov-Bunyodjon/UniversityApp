@@ -1,23 +1,39 @@
+<!--
+🔹 fragment_faculty.xml
+
+Bu layout fayl "Fakultetlar ro‘yxati" ekranini tashkil qiladi.
+Har bir UI elementi fragmentdagi funksiyalar bilan to‘liq bog‘langan:
+- SearchView → fakultetlarni qidirish
+- RecyclerView → fakultetlar ro‘yxatini ko‘rsatish
+- FloatingActionButton → yangi fakultet qo‘shish
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4DFFF2"
     android:orientation="vertical">
 
+    <!-- 🔹 Fakultetlarni qidirish uchun SearchView -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#8BFAC8"
         android:layout_margin="8dp"
         android:queryHint="Qidirish..."
         app:iconifiedByDefault="true" />
 
+    <!-- 🔹 Fakultetlar ro‘yxatini ko‘rsatadigan RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFaculty"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <!-- 🔹 Yangi fakultet qo‘shish uchun FloatingActionButton -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddFaculty"
         android:layout_width="wrap_content"
@@ -26,5 +42,6 @@
         android:layout_margin="16dp"
         android:contentDescription="Add Fakultet"
         android:src="@drawable/outline_add_box_24"
-        app:backgroundTint="@color/teal_700" />
+        app:backgroundTint="@android:color/system_error_dark"
+        tools:targetApi="34" />
 </LinearLayout>

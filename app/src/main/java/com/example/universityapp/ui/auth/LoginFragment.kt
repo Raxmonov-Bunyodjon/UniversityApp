@@ -16,19 +16,25 @@ import com.example.universityapp.databinding.FragmentLoginBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * LoginFragment — foydalanuvchi login oynasi.
+ * UI elementlari bilan ishlaydi, ViewModel orqali login jarayonini boshqaradi.
+ */
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
+    // 🔹 ViewBinding bilan UI elementlariga kirish
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    // 🔹 AuthViewModel-ni olish Hilt orqali
     private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Fragment binding ini yaratish
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,61 +42,87 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 🔹 Login button
+        // ========================
+        // 🔹 Login button listener
+        // ========================
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
+            // Form validation
             if (username.isEmpty() || password.length < 8) {
                 showBottomSheet("Username yoki parol noto‘g‘ri!")
                 return@setOnClickListener
             }
 
+            // Progress bar ko‘rsatish
             binding.progressBar.visibility = View.VISIBLE
+
+            // ViewModel orqali login chaqirish
             viewModel.login(username, password)
         }
 
+        // ========================
         // 🔹 Signup link
+        // ========================
         binding.tvGoToSignup.setOnClickListener {
+            // Signup fragment-ga navigatsiya
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
 
-        // 🔹 Auth state observe
+        // ========================
+        // 🔹 Auth state kuzatish (observe)
+        // ========================
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.authState.collect { state ->
+                // Progress barni yashirish
                 binding.progressBar.visibility = View.GONE
+
                 when (state) {
+                    // ✅ Muvaffaqiyat holati
                     is AuthState.Success -> {
                         findNavController().navigate(
-                            R.id.homeFragment,
+                            R.id.homeFragment,   // HomeFragment-ga o'tish
                             null,
                             NavOptions.Builder()
                                 .setPopUpTo(
                                     R.id.loginFragment,
                                     inclusive = true
-                                ) // loginFragment ni ham o‘chiradi
+                                ) // LoginFragment backstackdan o‘chiriladi
                                 .build()
                         )
                     }
 
+                    // ❌ Xatolik holati
                     is AuthState.Error -> showBottomSheet(state.message)
+
+                    // ⏸ Idle holati (hech narsa qilinmaydi)
                     AuthState.Idle -> Unit
                 }
             }
         }
     }
 
+    /**
+     * 🔹 BottomSheet orqali xabar ko‘rsatish
+     */
     private fun showBottomSheet(message: String) {
         val bottomSheet = BottomSheetDialog(requireContext())
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
+
+        // Xabarni o‘rnatish
         view.findViewById<TextView>(R.id.tvMessage).text = message
+
+        // OK button
         view.findViewById<Button>(R.id.btnOk).setOnClickListener { bottomSheet.dismiss() }
+
+        // BottomSheet-ni ko‘rsatish
         bottomSheet.setContentView(view)
         bottomSheet.show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Memory leak oldini olish
     }
 }

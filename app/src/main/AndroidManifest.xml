@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Kamera va gallery uchun ruxsat -->
+    <!--
+        Kamera va gallery uchun apparat va ruxsatlar
+    -->
+    <!-- Ilova kameraga ega bo‘lishi mumkin, lekin shart emas -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <!-- Kamera ishlatish ruxsati -->
     <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- Galereyadagi fayllarni o‘qish ruxsati -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- Fayllarni yozish/saqlash ruxsati (faqat Android 9 gacha) -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,13 +27,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniversityApp">
+
+        <!-- Asosiy Activity -->
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
+            <!-- Ilova ishga tushganda boshlanadigan Activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

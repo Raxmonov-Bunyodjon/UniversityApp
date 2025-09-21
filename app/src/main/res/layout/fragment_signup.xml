@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+🔹 fragment_signup.xml
+
+Bu layout fayl "Ro‘yxatdan o‘tish" ekranini tashkil qiladi.
+Har bir UI elementi foydalanuvchi ma’lumotlarini kiritish va ro‘yxatdan o‘tish jarayoni bilan bog‘langan.
+
+Elementlar:
+1. Avatar → foydalanuvchi rasmini ko‘rsatish
+2. ProgressBar → yuklanish jarayoni uchun
+3. TextInputLayout + EditText → Ism, Familiya, Username, Parol
+4. Signup tugmasi → ro‘yxatdan o‘tish funksiyasi
+5. Login link → mavjud akkauntga kirish havolasi
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#4EFFF2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <!-- Avatar -->
+    <!-- 🔹 Avatar rasm -->
     <ImageView
         android:id="@+id/ivAvatar"
         android:layout_width="96dp"
@@ -18,19 +32,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="3dp" />
 
+    <!-- 🔹 Yuklanish progress bar -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:layout_gravity="center"
         android:visibility="gone"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="24dp" />
 
-    <!-- First name -->
+    <!-- 🔹 Ism kiritish -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFirstName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -40,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/ivAvatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFirstName"
@@ -48,7 +62,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Last name -->
+    <!-- 🔹 Familiya kiritish -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilLastName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -58,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/tilFirstName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLastName"
@@ -66,9 +80,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
-    <!-- Username -->
+    <!-- 🔹 Username kiritish -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUsername"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -78,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/tilLastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername"
@@ -86,7 +98,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Password -->
+    <!-- 🔹 Parol kiritish -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -97,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@id/tilUsername"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
@@ -106,7 +118,7 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Signup button -->
+    <!-- 🔹 Signup tugmasi -->
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="0dp"
@@ -120,8 +132,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-
-    <!-- Login link -->
+    <!-- 🔹 Login havolasi -->
     <TextView
         android:id="@+id/tvGoToLogin"
         android:layout_width="wrap_content"

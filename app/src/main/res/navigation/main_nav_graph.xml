@@ -1,52 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 main_nav_graph.xml
+
+Bu navigation graph ilovaning asosiy kirish nuqtalarini boshqaradi:
+- Login va Signup fragmentlari (autentifikatsiya)
+- Home fragment va undagi sub-fragmentlar (Faculty, Student va Add fragmentlar)
+
+Fragmentlar va ularning actionlari:
+1. LoginFragment → SignupFragment va HomeFragment ga navigatsiya.
+2. SignupFragment → LoginFragment ga qaytish.
+3. HomeFragment → AddFacultyFragment ga navigatsiya.
+4. FacultyFragment → AddFacultyFragment ga navigatsiya.
+5. StudentFragment → AddStudentFragment ga navigatsiya.
+-->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph">
 
-    <!-- Login Fragment -->
+    <!-- 🔹 Login Fragment -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.universityapp.ui.auth.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
 
+        <!-- Signup fragmentga o'tish -->
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
 
+        <!-- Home fragmentga o'tish -->
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 
-    <!-- Signup Fragment -->
+    <!-- 🔹 Signup Fragment -->
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.example.universityapp.ui.auth.SignupFragment"
         android:label="Signup"
         tools:layout="@layout/fragment_signup">
 
+        <!-- Login fragmentga qaytish -->
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 
-    <!-- Home Fragment -->
+    <!-- 🔹 Home Fragment -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.universityapp.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
 
-    <action
-        android:id="@+id/action_homeFragment_to_addFacultyFragment"
-        app:destination="@id/addFacultyFragment" />
+        <!-- AddFacultyFragment ga o'tish -->
+        <action
+            android:id="@+id/action_homeFragment_to_addFacultyFragment"
+            app:destination="@id/addFacultyFragment" />
+    </fragment>
 
-    <!-- AddFacultyFragment -->
+
+
+    <!-- 🔹 Add Faculty Fragment -->
     <fragment
         android:id="@+id/addFacultyFragment"
         android:name="com.example.universityapp.ui.main.faculty.addfaculty.AddFacultyFragment"
         android:label="Add Faculty"
         tools:layout="@layout/fragment_add_faculty" />
+
+
+    <!-- 🔹 Add Student Fragment -->
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.universityapp.ui.main.student.addstudent.AddStudentFragment"
+        android:label="Add Student"
+        tools:layout="@layout/fragment_add_student" />
+
 </navigation>

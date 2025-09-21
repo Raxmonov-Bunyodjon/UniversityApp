@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 bottom_sheet_message.xml
+
+Bu layout fayl foydalanuvchiga oddiy xabar (message) ko‘rsatish uchun pastdan chiqadigan Bottom Sheet uchun ishlatiladi.
+Foydalanuvchi matnni ko‘rib, "OK" tugmasi orqali uni yopishi mumkin.
+
+Elementlar:
+1. LinearLayout → barcha elementlarni vertikal joylashtirish va padding berish.
+2. TextView → xabar matnini ko‘rsatadi.
+3. Button → foydalanuvchi xabarni qabul qilgach sheetni yopish tugmasi.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="16dp"
@@ -6,6 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- 🔹 Xabar matni -->
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="match_parent"
@@ -15,6 +27,7 @@
         android:textColor="@android:color/black"
         android:padding="8dp"/>
 
+    <!-- 🔹 OK tugmasi -->
     <Button
         android:id="@+id/btnOk"
         android:layout_width="match_parent"

@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 home_nav_graph.xml
+
+Bu navigation graph Home ekranidagi fragmentlar orasida navigatsiyani boshqaradi.
+BottomNavigationView bilan integratsiya qilinadi.
+
+Fragmentlar:
+1. FacultyFragment → fakultetlar ro‘yxati.
+2. StudentFragment → talabalar ro‘yxati.
+3. ProfileFragment → foydalanuvchi profili.
+
+StartDestination:
+- app:startDestination="@id/facultyFragment" → dastlab FacultyFragment ochiladi.
+-->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
     app:startDestination="@id/facultyFragment">
 
-    <!-- FacultyFragment -->
+    <!-- 🔹 Fakultetlar fragmenti -->
     <fragment
         android:id="@+id/facultyFragment"
         android:name="com.example.universityapp.ui.main.faculty.FacultyFragment"
         tools:layout="@layout/fragment_faculty"
-        android:label="Fakultetlar">
+        android:label="Fakultetlar"/>
 
-    </fragment>
-
-    <!-- Student Fragment -->
+    <!-- 🔹 Talabalar fragmenti -->
     <fragment
         android:id="@+id/studentFragment"
         android:name="com.example.universityapp.ui.main.student.StudentFragment"
         tools:layout="@layout/fragment_student"
         android:label="Talabalar" />
 
-    <!-- Profile Fragment -->
+    <!-- 🔹 Profil fragmenti -->
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.universityapp.ui.main.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile"
         android:label="Profil" />
+
 </navigation>

@@ -14,19 +14,25 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
-
+/**
+ * SignupFragment — foydalanuvchi ro‘yxatdan o‘tish oynasi.
+ * UI elementlari bilan ishlaydi va ViewModel orqali signup jarayonini boshqaradi.
+ */
 @AndroidEntryPoint
 class SignupFragment : Fragment() {
 
+    // 🔹 ViewBinding bilan UI elementlariga kirish
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
 
+    // 🔹 AuthViewModel-ni olish Hilt orqali
     private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Fragment binding ini yaratish
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,6 +40,10 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // ========================
+        // 🔹 Input validation
+        // ========================
+        // Ism, Familya, Username va Password tekshiruvlari
         binding.etFirstName.addTextChangedListener(SimpleTextWatcher {
             binding.etFirstName.error = if (it.isNullOrEmpty()) "Ism kiritilishi kerak" else null
             checkInputs()
@@ -43,8 +53,7 @@ class SignupFragment : Fragment() {
             checkInputs()
         })
         binding.etUsername.addTextChangedListener(SimpleTextWatcher {
-            binding.etUsername.error =
-                if (it.isNullOrEmpty()) "Username bo‘sh bo‘lmasligi kerak" else null
+            binding.etUsername.error = if (it.isNullOrEmpty()) "Username bo‘sh bo‘lmasligi kerak" else null
             checkInputs()
         })
         binding.etPassword.addTextChangedListener(SimpleTextWatcher {
@@ -53,6 +62,9 @@ class SignupFragment : Fragment() {
             checkInputs()
         })
 
+        // ========================
+        // 🔹 Signup button listener
+        // ========================
         binding.btnSignup.setOnClickListener {
             val firstName = binding.etFirstName.text.toString().trim()
             val lastName = binding.etLastName.text.toString().trim()
@@ -60,32 +72,49 @@ class SignupFragment : Fragment() {
             val password = binding.etPassword.text.toString().trim()
 
             binding.progressBar.visibility = View.VISIBLE
+
+            // ViewModel orqali signup chaqirish
             viewModel.signup(firstName, lastName, username, password)
         }
 
+        // ========================
+        // 🔹 Login link
+        // ========================
         binding.tvGoToLogin.setOnClickListener {
             findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
         }
 
+        // ========================
+        // 🔹 Auth state kuzatish (observe)
+        // ========================
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.authState.collectLatest { state ->
                 binding.progressBar.visibility = View.GONE
+
                 when (state) {
+                    // ✅ Muvaffaqiyat holati
                     is AuthState.Success -> {
                         showSnackbar(state.message, true)
-                        // ✅ signup tugagach faqat login sahifasiga qaytadi
+                        // Signup tugagach faqat login sahifasiga qaytadi
                         findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                     }
 
+                    // ❌ Xatolik holati
                     is AuthState.Error -> showSnackbar(state.message, false)
+
+                    // ⏸ Idle holati (hech narsa qilinmaydi)
                     AuthState.Idle -> Unit
                 }
             }
         }
 
+        // Dastlabki button enable holatini tekshirish
         checkInputs()
     }
 
+    /**
+     * 🔹 Inputlarni tekshiradi va Signup button-ni faollashtiradi yoki o‘chiradi
+     */
     private fun checkInputs() {
         val firstName = binding.etFirstName.text.toString().trim()
         val lastName = binding.etLastName.text.toString().trim()
@@ -97,6 +126,9 @@ class SignupFragment : Fragment() {
                     username.isNotEmpty() && password.length >= 8
     }
 
+    /**
+     * 🔹 Snackbar orqali xabar ko‘rsatish
+     */
     private fun showSnackbar(message: String, isSuccess: Boolean) {
         val snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
         if (isSuccess) {
@@ -109,6 +141,6 @@ class SignupFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Memory leak oldini olish
     }
 }

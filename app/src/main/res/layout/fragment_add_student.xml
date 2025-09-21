@@ -1,0 +1,63 @@
+<!--
+🔹 fragment_add_student.xml
+
+Bu layout fayl "Talaba qo‘shish" ekranini tashkil qiladi.
+Har bir UI elementi fragmentdagi funksiyalar bilan to‘liq bog‘langan.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#78E6FF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Talabaning ismi kiritiladigan EditText -->
+    <EditText
+        android:id="@+id/etFirstName"
+        android:hint="Ism"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Talabaning familiyasi kiritiladigan EditText -->
+    <EditText
+        android:id="@+id/etLastName"
+        android:hint="Familiya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Fakultet tanlash sarlavhasi -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Fakultet tanlash:"
+        android:textStyle="bold"
+        android:paddingTop="12dp"/>
+
+    <!-- Fakultet tanlash Spinner (dropdown) -->
+    <Spinner
+        android:id="@+id/spinnerFaculty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Talabaning yo‘nalishi kiritiladigan EditText -->
+    <EditText
+        android:id="@+id/etFacultyDirection"
+        android:hint="Yo'nalishi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:inputType="textCapWords|textPersonName"/>
+
+    <!-- Talaba ma’lumotlarini saqlash tugmasi -->
+    <Button
+        android:id="@+id/btnSaveStudent"
+        android:text="Saqlash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 bottom_sheet_error.xml
+
+Bu layout fayl xatolik yuz berganda pastdan chiqadigan Bottom Sheet uchun ishlatiladi.
+Foydalanuvchi xatolik haqidagi xabarni ko‘radi va "OK" tugmasi orqali uni yopadi.
+
+Elementlar:
+1. LinearLayout → barcha elementlarni vertikal joylashtirish va padding berish.
+2. TextView → xatolik matnini ko‘rsatadi.
+3. Button → foydalanuvchi xabardan so‘ng yopish tugmasi.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -6,6 +17,7 @@
     android:padding="24dp"
     android:background="@drawable/rounded_top_sheet">
 
+    <!-- 🔹 Xatolik matni -->
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="match_parent"
@@ -16,6 +28,7 @@
         android:gravity="center"
         android:paddingBottom="16dp"/>
 
+    <!-- 🔹 OK tugmasi -->
     <Button
         android:id="@+id/btnOk"
         android:layout_width="match_parent"

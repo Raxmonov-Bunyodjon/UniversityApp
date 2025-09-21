@@ -18,24 +18,37 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    /**
+     * AppDatabase singleton yaratadi.
+     * @param context - Application context Hilt tomonidan beriladi
+     * @return AppDatabase obyekti
+     */
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "university_db"
-        )
-            .fallbackToDestructiveMigration() // eski DB ni o‘chirib yangisini yaratadi
-            .build()
+            "university_db" // DB nomi, fayl sifatida saqlanadi
+        ).build()
     }
 
+    /**
+     * UserDao injekt qiladi.
+     * Repository yoki ViewModellarda Hilt orqali foydalaniladi
+     */
     @Provides
     fun provideUserDao(db: AppDatabase): UserDao = db.userDao()
 
+    /**
+     * StudentDao injekt qiladi.
+     */
     @Provides
     fun provideStudentDao(db: AppDatabase): StudentDao = db.studentDao()
 
+    /**
+     * FacultyDao injekt qiladi.
+     */
     @Provides
     fun provideFacultyDao(db: AppDatabase): FacultyDao = db.facultyDao()
 }

@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+🔹 fragment_student.xml
+
+Bu layout fayl "Talabalar ro‘yxati" ekranini tashkil qiladi.
+UI elementlar talabalar ro‘yxatini ko‘rsatish va qidirish imkonini beradi.
+
+Elementlar:
+1. LinearLayout → vertikal yo‘nalishdagi asosiy konteyner.
+2. SearchView → talabalarni qidirish uchun.
+3. RecyclerView → talabalarning ro‘yxatini ko‘rsatadi.
+4. FloatingActionButton → yangi talaba qo‘shish tugmasi.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/red"
+    android:background="#4DFFF2"
     android:layout_height="match_parent"
-    tools:context=".ui.main.student.StudentFragment">
+    android:orientation="vertical">
 
+    <!-- 🔹 Talabalarni qidirish maydoni -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:background="#8BFAC8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:queryHint="Qidirish..."
+        app:iconifiedByDefault="true" />
+
+    <!-- 🔹 Talabalar ro‘yxati -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         tools:listitem="@layout/item_student" />
 
-</FrameLayout>
+    <!-- 🔹 Yangi talaba qo‘shish tugmasi -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Yangi talaba qo‘shish"
+        android:src="@drawable/outline_add_box_24"
+        app:backgroundTint="@android:color/system_error_dark" />
+</LinearLayout>

@@ -13,6 +13,14 @@ import javax.inject.Singleton   // <<<<<<<<<<<<<<<<<<<<<
 @InstallIn(SingletonComponent::class)
 object PreferencesModule {
 
+    /**
+     * UserPreferences singleton yaratadi.
+     * @param context - Application context Hilt tomonidan beriladi
+     * @return UserPreferences obyekti
+     *
+     * 🔹 Shu modul orqali repository yoki ViewModel Hilt orqali
+     * UserPreferences obyekti bilan ishlay oladi
+     */
     @Provides
     @Singleton
     fun provideUserPreferences(@ApplicationContext context: Context): UserPreferences {

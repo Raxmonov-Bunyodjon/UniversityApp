@@ -1,8 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 fragment_progress.xml
+
+Bu layout fayl "Progress" (yuklanayotgan) holat ekranini tashkil qiladi.
+Foydalanuvchi ma’lumotlar yuklanayotgan paytda progress indikator ko‘rsatiladi.
+
+Elementlar:
+1. FrameLayout → ekran bo‘ylab markazlashtirilgan konteyner.
+2. ProgressBar → markazda aylanuvchi indikator (yuklanish belgilovchi).
+-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
+    <!-- 🔹 Markazdagi yuklanish indikator -->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

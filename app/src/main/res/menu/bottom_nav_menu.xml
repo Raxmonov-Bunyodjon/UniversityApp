@@ -1,16 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 bottom_nav_menu.xml
+
+Bu menu fayl BottomNavigationView uchun ishlatiladi.
+Har bir item BottomNavigation bar-da fragmentlar orasida navigatsiya qilish imkonini beradi.
+
+Elementlar:
+1. Fakultetlar → fakultetlar ro‘yxati fragmentiga o‘tish.
+2. Talabalar → talabalar ro‘yxati fragmentiga o‘tish.
+3. Profile → foydalanuvchi profili fragmentiga o‘tish.
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- 🔹 Fakultetlar fragmenti -->
     <item
         android:id="@+id/facultyFragment"
         android:icon="@drawable/outline_add_box_24"
         android:title="Fakultetlar" />
 
+    <!-- 🔹 Talabalar fragmenti -->
     <item
         android:id="@+id/studentFragment"
         android:icon="@drawable/outline_groups_24"
         android:title="Talabalar" />
 
+    <!-- 🔹 Profil fragmenti -->
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/outline_account_circle_24"

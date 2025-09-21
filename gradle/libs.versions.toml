@@ -1,6 +1,15 @@
+# 🔹 Bu fayl Gradle version catalog hisoblanadi.
+# Har bir dependency, plugin va ularning versiyalari markaziy joyda boshqariladi.
+# Shu bilan project bo‘ylab bir xil versiyalar ishlatiladi.
+
 [versions]
+# 🔹 Android Gradle Plugin versiyasi
 agp = "8.12.3"
+
+# 🔹 Kotlin versiyasi
 kotlin = "2.0.21"
+
+# 🔹 AndroidX va boshqa kutubxonalar versiyalari
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
@@ -12,6 +21,7 @@ constraintlayout = "2.2.1"
 recyclerview = "1.4.0"
 
 [libraries]
+# 🔹 Kutubxonalar va ularning group:name:version
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -23,6 +33,6 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
+# 🔹 Gradle plugin lar va ularning versiyalari
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-

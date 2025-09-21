@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+🔹 fragment_blank.xml
+
+Bu layout fayl hozircha bo‘sh (Blank Fragment) sifatida ishlatiladi.
+- FrameLayout → fragmentning containeri
+- TextView → placeholder sifatida "Hello Blank Fragment" matnini ko‘rsatadi
+- tools:context → fragment bilan bog‘lanadi, faqat design-time uchun
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.AuthViewModel">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- 🔹 Placeholder matn -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/hello_blank_fragment"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
 
 </FrameLayout>

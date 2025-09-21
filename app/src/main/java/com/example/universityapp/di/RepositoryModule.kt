@@ -16,14 +16,26 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
+    /**
+     * UserRepository interfeysini Hilt orqali UserRepositoryImpl bilan bog‘laydi.
+     * @param impl - UserRepositoryImpl obyekti
+     * @return UserRepository interfeysi
+     * 🔹 Shu orqali repository dependency injection bilan istalgan joyda ishlatiladi
+     */
     @Binds
     @Singleton
     abstract fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
 
+    /**
+     * FacultyRepository interfeysini Hilt orqali FacultyRepositoryImpl bilan bog‘laydi.
+     */
     @Binds
     @Singleton
     abstract fun bindFacultyRepository(impl: FacultyRepositoryImpl): FacultyRepository
 
+    /**
+     * StudentRepository interfeysini Hilt orqali StudentRepositoryImpl bilan bog‘laydi.
+     */
     @Binds
     @Singleton
     abstract fun bindStudentRepository(impl: StudentRepositoryImpl): StudentRepository

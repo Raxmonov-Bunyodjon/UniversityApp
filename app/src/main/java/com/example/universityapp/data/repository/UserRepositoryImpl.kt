@@ -10,14 +10,24 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+/**
+ * UserRepositoryImpl — UserRepository interfeysining implementatsiyasi.
+ * DAO va DataStore orqali foydalanuvchi ma’lumotlarini boshqaradi.
+ */
 class UserRepositoryImpl @Inject constructor(
     private val userDao: UserDao,
     private val preferences: UserPreferences,
 ) : UserRepository {
 
+    // ============================
+    // DataStore orqali username oqimi
+    // ============================
     override val userUsernameFlow: Flow<String?>
         get() = preferences.userUsernameFlow
 
+    // ============================
+    // Foydalanuvchilar ro‘yxatini olish
+    // ============================
     override fun getUsers(): Flow<List<User>> {
         return userDao.getAllUsers().map { list ->
             list.map { entity ->
@@ -32,7 +42,9 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    // Login uchun Flow
+    // ============================
+    // Login: username va password bo‘yicha foydalanuvchini olish
+    // ============================
     override fun getUserByUsernameAndPassword(username: String, password: String): Flow<User?> {
         return userDao.getUserByUsernameAndPassword(username, password).map { entity ->
             entity?.let {
@@ -47,21 +59,28 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    // Signup uchun suspend funksiya
+    // ============================
+    // Signup: username bo‘yicha foydalanuvchini olish
+    // ============================
     override suspend fun getUserByUsername(username: String): User? {
-        val entity =
-            userDao.getUserByUsername(username).firstOrNull()  // UserDao da buni qo‘shishing kerak
+        val entity = userDao.getUserByUsername(username).firstOrNull()
         return entity?.let {
             User(
                 id = it.id,
                 firstName = it.firstName,
                 lastName = it.lastName,
                 username = it.username,
-                password = it.password
+                password = it.password,
+                faculty = it.faculty,
+                direction = it.direction,
+                avatar = it.avatar
             )
         }
     }
 
+    // ============================
+    // Yangi foydalanuvchi qo‘shish
+    // ============================
     override suspend fun insertUser(user: User) {
         userDao.insertUser(
             UserEntity(
@@ -74,15 +93,31 @@ class UserRepositoryImpl @Inject constructor(
         )
     }
 
+    // ============================
+    // Foydalanuvchini o‘chirish
+    // ============================
     override suspend fun deleteUser(user: User) {
         userDao.deleteUser(user.id)
     }
 
+    // ============================
+    // Login: username saqlash (DataStore)
+    // ============================
     override suspend fun signInUser(username: String) {
         preferences.saveUsername(username)
     }
 
+    // ============================
+    // Logout: barcha session ma’lumotlarini tozalash
+    // ============================
     override suspend fun logout() {
         preferences.clearUser()
+    }
+
+    // ============================
+    // Foydalanuvchi avatarini yangilash
+    // ============================
+    override suspend fun updateUserAvatar(username: String, avatar: String) {
+        userDao.updateAvatar(username, avatar)
     }
 }

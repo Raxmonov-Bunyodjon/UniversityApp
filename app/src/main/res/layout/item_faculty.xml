@@ -1,3 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+🔹 item_faculty.xml
+
+Bu layout fayl fakultetlar ro‘yxatidagi bitta item (kartochka) uchun ishlatiladi.
+UI elementlar fakultet nomini ko‘rsatish va tahrirlash/o‘chirish tugmalari bilan bog‘langan.
+
+Elementlar:
+1. CardView → vizual kartochka elementi, soyalash va burchak radiusi bilan.
+2. LinearLayout → ichki elementlarni gorizontal joylashtirish.
+3. TextView → fakultet nomi.
+4. ImageButton → Edit tugmasi (tahrirlash).
+5. ImageButton → Delete tugmasi (o‘chirish).
+-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,6 +21,7 @@
     card_view:cardCornerRadius="12dp"
     card_view:cardBackgroundColor="@android:color/white">
 
+    <!-- 🔹 Ichki gorizontal konteyner -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +29,7 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <!-- Fakultet nomi chapda -->
+        <!-- 🔹 Fakultet nomi -->
         <TextView
             android:id="@+id/tvFacultyName"
             android:layout_width="0dp"
@@ -25,27 +40,25 @@
             android:textStyle="bold"
             android:textColor="@android:color/black" />
 
-<!--        &lt;!&ndash; Edit tugma &ndash;&gt;-->
-<!--        <ImageButton-->
-<!--            android:id="@+id/btnEdit"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:src="@drawable/outline_edit_24"-->
-<!--            android:contentDescription="Edit"-->
-<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--            card_view:tint="@color/black"/>-->
+        <!-- 🔹 Edit tugmasi -->
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/outline_edit_24"
+            android:contentDescription="Tahrirlash"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            card_view:tint="@color/black"/>
 
-`        <!-- Delete tugma -->
+        <!-- 🔹 Delete tugmasi -->
         <ImageButton
             android:id="@+id/btnDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/outline_delete_24"
-            android:contentDescription="Delete"
+            android:contentDescription="O‘chirish"
             android:background="?attr/selectableItemBackgroundBorderless"
-            card_view:tint="@color/red" />`
-
-
+            card_view:tint="@color/red" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
