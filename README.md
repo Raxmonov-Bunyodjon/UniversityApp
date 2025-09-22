@@ -1,71 +1,65 @@
+🎓 UniversityApp
+
+UniversityApp — talaba va fakultet ma’lumotlarini boshqarish uchun yaratilgan Android ilovasi. Loyihada Clean Architecture va MVVM yondashuvlari asos qilib olingan hamda zamonaviy Android texnologiyalari qo‘llangan.
+
+✨ Xususiyatlar
+
+👨‍🎓 Talabalarni qo‘shish, tahrirlash va o‘chirish
+
+🏫 Fakultetlar bilan ishlash
+
+🔍 Qidiruv va filtr funksiyalari
+
+💾 Ma’lumotlarni Room Database da saqlash
+
+🎨 Material Design asosidagi interfeys
+
+🔄 Toza arxitektura (data, domain, ui qatlamlari)
+
+🛠 Texnologiyalar va kutubxonalar
+
+Kotlin — asosiy dasturlash tili
+
+Clean Architecture + MVVM — arxitektura yondashuvi
+
+Android Jetpack komponentlari:
+
+Room (local database)
+
+ViewModel & LiveData
+
+Navigation Component
+
+Hilt (Dagger) — dependency injection
+
+Kotlin Coroutines & Flow — asinxron vazifalarni boshqarish
+
+RecyclerView + Adapter — ro‘yxatlar bilan ishlash
+
+Material Design Components — UI/UX
+
+📂 Loyihaning tuzilishi
+com.example.universityapp/
+│
+├── data/        # 📦 Ma'lumotlar qatlami (Room, RepositoryImpl, Mapper)
+├── di/          # 🧬 Dependency Injection (Hilt modullari)
+├── domain/      # 🧠 Biznes logika (Model, Repository interface, UseCase)
+├── ui/          # 🎨 Foydalanuvchi interfeysi (Fragment, ViewModel, Adapter)
+├── utils/       # 🛠 Extension funksiyalar va konstantalar
+├── UniversityApp.kt  # 🚀 Asosiy Application klass
+└── readme-universityapp.md  # 📘 Hujjat
+
+🚀 Ishga tushirish
+
+Loyihani klon qiling:
+
+git clone https://github.com/Raxmonov-Bunyodjon/UniversityApp.git
 
 
-📚 UniversityApp
-UniversityApp — bu Android ilovasi bo‘lib, universitet talabalar, fakultetlar va foydalanuvchilarni boshqarish uchun mo‘ljallangan. Ilova orqali foydalanuvchi ro‘yxatdan o‘tishi, tizimga kirishi va ma’lumotlarni ko‘rishi mumkin.
+Android Studio’da oching
 
+Run qiling 🚀
 
-🚀 Asosiy funksiyalar
+🔗 Link
 
-👤 Foydalanuvchi ro‘yxatdan o‘tishi va login
-
-🎓 Talabalar ro‘yxatini ko‘rish va tahrirlash
-
-🏫 Fakultetlar, guruhlar, yo‘nalishlar haqida ma’lumotlar
-
-📄 Room Database orqali CRUD operatsiyalar
-
-🧩 MVVM arxitekturasi + Hilt (DI)
-
-🌐 Retrofit orqali tarmoq aloqasi
-
-⚙️ Coroutine bilan asinxron jarayonlar
-
-📊 ViewModel, LiveData, Navigation Component
-
-
-
-## 🛠 Texnologiyalar
-
-| Layer        | Texnologiya                          |
-|--------------|--------------------------------------|
-| UI           | XML, ConstraintLayout, GridView      |
-| Architecture | MVVM, Repository Pattern             |
-| Database     | Room, DAO                            |
-| DI           | Hilt (dagger-hilt)                   |
-| Network      | Retrofit                             |
-| Async        | Coroutine                            |
-| State        | ViewModel, LiveData                  |
-| Navigation   | Navigation Component                 |
-| Versioning   | Git + GitLab                         |
-
-
-📦 Loyihaning tuzilmasi
-📦 Loyihaning tuzilmasi — tavsif
-Bu loyiha modullarga ajratilgan, MVVM arxitekturasiga asoslangan Android ilova bo‘lib, quyidagi asosiy papkalar mavjud:
-app/src/main/java/com/example/universityapp/ Loyihaning asosiy Kotlin kodlari shu yerda joylashgan. Ichida quyidagi modullar mavjud:
-ui/ — foydalanuvchi interfeysi: fragmentlar, adapterlar, viewmodel’lar
-data/ — ma’lumotlar manbasi: Room entity’lar, DAO’lar, repository implementatsiyasi
-domain/ — biznes logika: model va repository interfeyslar
-di/ — dependency injection modullari (Hilt)
-utils/ — yordamchi funksiyalar, konstantalar
-res/ XML layoutlar, drawable fayllar, string resurslar va navigation graph shu yerda
-build.gradle.kts (app va root) Gradle konfiguratsiyasi — dependency’lar, plugin’lar va versiyalar
-settings.gradle.kts Modul konfiguratsiyasi va loyihani build qilish uchun kerakli fayl
-
-
-📲 Ishga tushirish
-
-Android Studio’da loyihani oching
-gradlew build orqali build qiling
-Emulator yoki real qurilmada ishga tushiring
-
-
-
-🤝 Hissa qo‘shish
-Pull requestlar ochiq! Taklif, xatolik yoki yangi funksiya bo‘lsa — bemalol issue oching yoki PR yuboring.
-
-
-📧 Aloqa
-Savollar yoki hamkorlik uchun:
-Email: bunyodjonraxmonov22@gmail.com
-Telegram @RaxmonovBunyodjon
+👉 GitHub Repository
